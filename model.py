@@ -5,27 +5,6 @@ import matplotlib.pyplot as plt
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-def plot_outdata(dat1):
-    data1=dat1.detach().cpu()
-    # data2=dat2.detach().cpu()
-    rows,cols=data1.size()[0],4
-    j=1
-    num=data1.size()[0]
-
-    print(data1.dtype,data1.size())
-    for i in range(num):
-
-        plt.subplot(rows,cols,j)
-        plt.imshow(data1[i,0,:,:].squeeze(),cmap='gray')
-        plt.subplot(rows, cols, j+1)
-        plt.imshow(data1[i, 1, :, :].squeeze(), cmap='gray')
-        plt.subplot(rows, cols, j+2)
-        plt.imshow(data1[i, 2, :, :].squeeze(), cmap='gray')
-        plt.subplot(rows, cols, j+3)
-        plt.imshow(data1[i, 3, :, :].squeeze(), cmap='gray')
-        j=j+4
-
-    plt.show()
 # Two sequential convolution section of Unet
 def doubleconv(inp, out):
     double_conv = nn.Sequential(
